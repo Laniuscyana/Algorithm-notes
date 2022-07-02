@@ -40,7 +40,7 @@ class Solution {
 }
 ```
 
-## LC.871
+## LC.871(贪心加优先队列（堆）)
  ```java
 class Solution {
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
