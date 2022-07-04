@@ -133,3 +133,32 @@ class Solution {
     }
 }
 ```
+## LC.1200 绝对最小差
+ ```java
+class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Arrays.sort(arr);
+        int delta=Integer.MAX_VALUE;
+
+        List<List<Integer>> ans=new ArrayList<List<Integer>>();
+        for(int i=0;i<arr.length-1;i++){
+            int dif=arr[i+1]-arr[i];
+            if(dif<delta){
+                delta=dif;
+                ans.clear();
+                List<Integer> par=new ArrayList<Integer>();
+                par.add(arr[i]);
+                par.add(arr[i+1]);
+                ans.add(par);
+            }else if(dif==delta){
+                List<Integer> par=new ArrayList<Integer>();
+                par.add(arr[i]);
+                par.add(arr[i+1]);
+                ans.add(par);
+            }
+        }
+        return ans;
+
+    }
+}
+```
