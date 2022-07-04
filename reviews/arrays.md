@@ -28,7 +28,7 @@
 }
 ```
 
-## 摆动排序
+## LC.324 摆动排序
  ```java
 class Solution {
     public void wiggleSort(int[] nums) {
