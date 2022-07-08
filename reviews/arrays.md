@@ -66,6 +66,10 @@ class Solution {
 
 
 ## LC.556下一个更大元素III
+> https://leetcode.cn/problems/next-greater-element-iii/
+
+
+
  ```java
 class Solution {
     public int nextGreaterElement(int n) {
