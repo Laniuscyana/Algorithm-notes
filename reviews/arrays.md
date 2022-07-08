@@ -63,7 +63,11 @@ class Solution {
 
 那么是否有其他复杂度更低、且占用空间更小的解法？
 
-## LC.503 下一个更大元素I
+## LC.496 下一个更大元素I
+> https://leetcode.cn/problems/next-greater-element-i/
+
+
+
  ```java
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
