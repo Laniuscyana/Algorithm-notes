@@ -91,6 +91,33 @@ class Solution {
 }
 ```
 
+## LC.503 下一个更大元素II
+> https://leetcode.cn/problems/next-greater-element-ii/
+
+用单调栈来解决这道题，首先，由于这是一个循环数组，实际求解过程中需要将前n-1个元素衔接到原数组的最后一个元素后面；实际操作中可以不用生成而是实际循环2n-1词，但每次对i取模。
+
+先生成一个栈，然后将第一个元素的**下标**压入栈中；此时将第二个元素与栈顶编号对应的元素进行比较，如果栈顶的编号对应的数组元素小于第二个元素，说明第二个元素正是它的下一个最大元素。弹出栈顶元素，并用ans数组记录弹出的编号，正好对应第二个元素，此时原数组的第一个元素的下一个更大元素求解完成。然后，将第二个元素的下标压入栈中，重复刚才的过程。
+
+这里需要注意一点，在用代码表示**栈顶编号对应的元素如果小于即将入栈的元素，那么说明即将入栈的元素正是它的下一个更大元素，反之，如果栈顶编号对应的元素大于即将入栈的元素，说明即将入栈的元素不是它的下一个更大元素，此时对栈不做弹出操作，只将即将入栈的元素压入；当栈中有两个及以上的元素时，每一次都检查栈是否不空，以及栈顶元素对应的数组元素是否小于即将入栈的元素，如果两个条件都满足，那么就弹出栈顶元素，用ans数组记录，直到栈为空或者栈顶对应的数组元素大于即将入栈的元素**。
+
+ ```java
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n=nums.length;
+        int[] ans=new int[n];
+        Arrays.fill(ans,-1);
+        Deque<Integer> stack=new ArrayDeque<Integer>();
+        for(int i=0;i<2*n-1;i++){
+            while(!stack.isEmpty() && nums[stack.peek()]<nums[i%n]){
+                ans[stack.pop()]=nums[i%n];
+           }
+           stack.push(i%n);
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.556下一个更大元素III
 > https://leetcode.cn/problems/next-greater-element-iii/
 
