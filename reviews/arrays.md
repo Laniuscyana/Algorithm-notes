@@ -236,3 +236,34 @@ class Solution {
     }
 }
 ```
+
+## LC.1252 奇数值单元格数目
+ ```java
+class Solution {
+    public int oddCells(int m, int n, int[][] indices) {
+        int[] rows=new int[m];
+        int[] cols=new int[n];
+        for(int[] index:indices){
+            rows[index[0]]++;
+            cols[index[1]]++;
+        }
+
+        int oddx=0;
+        int oddy=0;
+
+        for(int i=0;i<m;i++){
+            if((rows[i] & 1)!=0){
+                oddx++;
+            }
+        }
+        for(int j=0;j<n;j++){
+            if((cols[j] & 1)!=0){
+                oddy++;
+            }
+        }
+
+        return oddy*(m-oddx)+oddx*(n-oddy);
+    }
+}
+
+```
