@@ -1,4 +1,43 @@
 # 数组
+
+## LC.31下一个排列
+ ```java
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        int i=n-2;
+        while(i>=0 && nums[i]>=nums[i+1]){
+            i--;
+        }
+
+        if(i>=0){
+            int j=n-1;
+            while(j>=0 && nums[i]>=nums[j]){
+                j--;
+            }
+            swtch(nums,i,j);
+        }
+        reverse(nums,i+1);
+
+    }
+    
+    public void reverse(int[] nums,int start){
+        int i=start,j=nums.length-1;
+        while(i<j){
+            swtch(nums,i,j);
+            i++;
+            j--;
+        }
+    }
+
+    public void swtch(int[] nums, int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+}
+```
+
 ## LC.134 加油站
 > https://leetcode.cn/problems/gas-station/
 
@@ -170,43 +209,32 @@ class Solution {
     }
 }
 ```
-## LC.31下一个排列
+
+### LC.565 数组嵌套
+
+解题思路：由于本题中原始数组各不相同且都在0,n-1之间，所以可以考虑直接模拟。
+注意到题目的要求是当S数组中出现重复时停止添加元素，那么在该题中，为了防止出现重复元素，可以将访问过的元素重制为范围之外的任意数字，并设置为循环停止的条件。
+
  ```java
 class Solution {
-    public void nextPermutation(int[] nums) {
+    public int arrayNesting(int[] nums) {
+        int ans=0;
         int n=nums.length;
-        int i=n-2;
-        while(i>=0 && nums[i]>=nums[i+1]){
-            i--;
-        }
-
-        if(i>=0){
-            int j=n-1;
-            while(j>=0 && nums[i]>=nums[j]){
-                j--;
+        for(int i=0;i<n;i++){
+            int cnt=0;
+            while(nums[i]<n){
+                int num=nums[i];
+                nums[i]=n;
+                i=num;
+                cnt++;
             }
-            swtch(nums,i,j);
+            ans=Math.max(cnt,ans);
         }
-        reverse(nums,i+1);
-
-    }
-    
-    public void reverse(int[] nums,int start){
-        int i=start,j=nums.length-1;
-        while(i<j){
-            swtch(nums,i,j);
-            i++;
-            j--;
-        }
-    }
-
-    public void swtch(int[] nums, int i,int j){
-        int temp=nums[i];
-        nums[i]=nums[j];
-        nums[j]=temp;
+        return ans;
     }
 }
 ```
+
 ## LC.1200 绝对最小差
  ```java
 class Solution {
