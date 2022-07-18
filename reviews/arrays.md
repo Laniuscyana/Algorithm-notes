@@ -38,6 +38,25 @@ class Solution {
 }
 ```
 
+## LC.53最大子数组和
+> https://leetcode.cn/problems/maximum-subarray/
+
+更新prev时的重要设定，在当前数加上过去的和与当前数之间做选择，这种做法使得更新时遇到前面的加起来全都更小时可以直接从当前位置开始
+
+ ```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int ans=nums[0];
+        int prev=0;
+        for(int i=0;i<nums.length;i++){
+            prev=Math.max(nums[i]+prev,prev);
+            ans=Math.max(ans,prev);
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.134 加油站
 > https://leetcode.cn/problems/gas-station/
 
