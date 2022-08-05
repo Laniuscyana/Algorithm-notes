@@ -314,3 +314,38 @@ class Solution {
 }
 
 ```
+
+## LC.1403
+> https://leetcode.cn/problems/minimum-subsequence-in-non-increasing-order/
+```java
+class Solution {
+    public List<Integer> minSubsequence(int[] nums) {
+        Arrays.sort(nums);
+        List<Integer> ans=new ArrayList<Integer>();
+        int n=nums.length;
+        
+        if(n==1){
+            ans.add(nums[n-1]);
+            return ans;
+        }
+
+        int sum=0;
+        int[] fsum=new int[n+1];
+        fsum[1]=nums[0];
+      
+        for(int i=2;i<n;i++){
+            fsum[i] +=nums[i-1]+fsum[i-1];
+        }
+        
+
+        for(int i=n-1;i>=0;i--){
+            sum +=nums[i];
+            ans.add(nums[i]);
+            if(sum>fsum[i]){
+                return ans;
+            }
+        }
+        return ans;
+    }
+}
+```
