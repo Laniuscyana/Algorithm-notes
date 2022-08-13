@@ -55,3 +55,8 @@ class Solution {
 }
 ```
   
+## LC.219 存在重复元素
+> https://leetcode.cn/problems/contains-duplicate-ii/
+```java
+
+```
