@@ -1,5 +1,6 @@
 # 滑动窗口
 ## lc.30
+> https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
  ```java
 class Solution {
     public List<Integer> findSubstring(String s, String[] words) {
