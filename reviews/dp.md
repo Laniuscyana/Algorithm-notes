@@ -15,7 +15,8 @@
     }
 }
 ```
-## 打气球
+## LC.312 打气球
+> https://leetcode.cn/problems/burst-balloons/
  ```java
 class Solution {
     public int maxCoins(int[] nums) {
@@ -109,5 +110,11 @@ class Solution {
         
     }
 }
+```
+
+## LC.730
+> https://leetcode.cn/problems/count-different-palindromic-subsequences/
+```java
+
 ```
 
