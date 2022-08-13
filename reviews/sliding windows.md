@@ -11,13 +11,13 @@ class Solution {
  
         for(int i=0;i<n;i++){
             //判断长度是否够，不够就返回空集；
- 
             if(i+m*n>ls){
                 break;
             }
             
             //每次都新生成一个哈希表，每次循环的哈希表对下一次循环的哈希表都没有信息增量，所以每次新生成一个用于维护滑动窗口；
             Map<String, Integer> differ = new HashMap<String, Integer>();
+            
             //第一个滑动窗口的生成；
             for(int j=0;j<m;j++){
                 String word=s.substring(i+j*n,i+(j+1)*n);
@@ -55,8 +55,14 @@ class Solution {
 }
 ```
   
-## LC.219 存在重复元素
+## LC.219 存在重复元素II
 > https://leetcode.cn/problems/contains-duplicate-ii/
+```java
+
+```
+
+## LC.220 存在重复元素III
+> https://leetcode.cn/problems/contains-duplicate-iii/
 ```java
 
 ```
