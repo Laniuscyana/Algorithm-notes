@@ -38,6 +38,52 @@ class Solution {
 }
 ```
 
+## LC.45 跳跃游戏II
+> https://leetcode.cn/problems/jump-game-ii/
+```java
+class Solution {
+    public int jump(int[] nums) {
+        if(nums ==null || nums.length<2){
+            return 0;
+        }
+
+        int res=0;
+        int curmax=0;
+        int maxnext=0;
+        //每次在上次能跳到的范围end内选择一个能跳的最远的位置,也就是能跳到max_far位置的点作为下次的起跳点
+        for(int i=0;i<nums.length-1;i++){
+            maxnext=Math.max(maxnext,i+nums[i]);
+            if(i==curmax){
+                res++;
+                curmax=maxnext;
+            }
+        }
+        return res;
+
+    }
+}
+```
+
+## LC.55 跳跃游戏
+> https://leetcode.cn/problems/jump-game/
+
+```java
+class Solution {
+    public boolean canJump(int[] nums) {
+        //设定一个最远能够达到的距离的下标max，每次跳跃后维护它
+        int max=0;
+        //对每个下标，先判断上一个跳跃后，是否能达到现在的下标，如果可以，那么就计算在当前下标位置最远能达到的地方，如果不能达到，返回false
+        for(int i=0;i<nums.length;i++){
+            if(i>max){
+                return false;
+            }
+            max=Math.max(max,i+nums[i]);
+        }
+        return true;
+    }
+}
+```
+
 ## LC.53最大子数组和
 > https://leetcode.cn/problems/maximum-subarray/
 
@@ -95,25 +141,7 @@ class Solution {
 }
 ```
 
-## LC.55 跳跃游戏
-> https://leetcode.cn/problems/jump-game/
 
-```java
-class Solution {
-    public boolean canJump(int[] nums) {
-        //设定一个最远能够达到的距离的下标max，每次跳跃后维护它
-        int max=0;
-        //对每个下标，先判断上一个跳跃后，是否能达到现在的下标，如果可以，那么就计算在当前下标位置最远能达到的地方，如果不能达到，返回false
-        for(int i=0;i<nums.length;i++){
-            if(i>max){
-                return false;
-            }
-            max=Math.max(max,i+nums[i]);
-        }
-        return true;
-    }
-}
-```
 
 ## LC.229 多数元素II
 > https://leetcode.cn/problems/majority-element-ii/
