@@ -95,6 +95,56 @@ class Solution {
 }
 ```
 
+## LC.229 多数元素II
+> https://leetcode.cn/problems/majority-element-ii/
+```java
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int can1=0;
+        int can2=0;
+        int count1=0;
+        int count2=0;
+
+        List<Integer> ans=new ArrayList<Integer>();
+
+        for(int num:nums){
+            if(count1>0 && can1==num){
+                count1++;
+            }else if(count2>0 && can2==num){
+                count2++;
+            }else if(count1==0){
+                can1=num;
+                count1++;
+            }else if(count2==0){
+                can2=num;
+                count2++; 
+            }else if(num!=can1 && num!=can2){
+                count1--;
+                count2--;
+            }
+        }
+
+        count1=0;
+        count2=0;
+
+        for(int num:nums){
+            if(num==can1){
+                count1++;
+            }else if(num==can2){
+                count2++;
+            }
+        }
+        if(count1>nums.length/3){
+            ans.add(can1);
+        }
+        if(count2>nums.length/3){
+            ans.add(can2);
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
