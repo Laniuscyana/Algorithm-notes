@@ -1,5 +1,5 @@
 # 滑动窗口
-## lc.30
+## LC.30 串联所有单词的子串
 > https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
  ```java
 class Solution {
