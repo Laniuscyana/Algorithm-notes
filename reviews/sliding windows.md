@@ -1,4 +1,28 @@
 # 滑动窗口
+
+## LC.3 无重复字符的最长子串
+> https://leetcode.cn/problems/longest-substring-without-repeating-characters/
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n=s.length();
+        int start=0;
+        int ans=0;
+        Map<Character,Integer> map=new HashMap<Character,Integer>();
+
+        for(int end=0;end<n;end++){
+            char ws=s.charAt(end);
+            if(map.containsKey(ws)){
+                start=Math.max(start,map.get(ws));
+            }
+            ans=Math.max(ans, end-start+1);
+            map.put(ws,end+1);
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.30 串联所有单词的子串
 > https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
  ```java
