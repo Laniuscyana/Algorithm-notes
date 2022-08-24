@@ -58,24 +58,6 @@ class Solution {
 
 ## 深度优先搜索
 
-### LC.226 翻转二叉树
-```java
-class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        if(root==null){
-            return null;
-        }
-
-        TreeNode left=invertTree(root.left);
-        TreeNode right=invertTree(root.right);
-        root.left=right;
-        root.right=left;
-
-        return root;
-    }
-}
-```
-
 ### LC.241 为运算表达式设置优先级
  ```java
 class Solution {
