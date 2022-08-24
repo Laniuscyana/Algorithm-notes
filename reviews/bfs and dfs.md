@@ -89,6 +89,22 @@ class Solution {
 
 ## 深度优先搜索
 
+### LC.104 二叉树的最大深度
+> https://leetcode.cn/problems/maximum-depth-of-binary-tree/
+```java
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int rmax=maxDepth(root.right);
+        int lmax=maxDepth(root.left);
+        return Math.max(rmax,lmax)+1;
+
+    }
+}
+```
+
 ### LC.241 为运算表达式设置优先级
  ```java
 class Solution {
