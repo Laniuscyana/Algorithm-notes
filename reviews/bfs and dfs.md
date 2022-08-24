@@ -106,6 +106,7 @@ class Solution {
 ```
 
 ### LC.241 为运算表达式设置优先级
+> https://leetcode.cn/problems/different-ways-to-add-parentheses/
  ```java
 class Solution {
     char[] s;
