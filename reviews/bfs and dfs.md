@@ -212,6 +212,50 @@ class Solution {
 ```
 [广度优先搜索方法](#jump)
 
+### LC.543 二叉树的最大直径
+> https://leetcode.cn/problems/diameter-of-binary-tree/
+```java
+class Solution {
+    int ans;
+    public int diameterOfBinaryTree(TreeNode root) {
+        ans=1;
+        depth(root);
+        return ans-1;
+    }
+
+    public int depth(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int lmax=depth(root.left);
+        int rmax=depth(root.right);
+        ans=Math.max(ans,lmax+rmax+1);
+        return Math.max(lmax,rmax)+1;
+    }
+}
+```
+
+### LC.617 合并二叉树
+> https://leetcode.cn/problems/merge-two-binary-trees/submissions/
+```java
+class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if(root1==null){
+            return root2;
+        }
+
+        if(root2==null){
+            return root1;
+        }
+
+        TreeNode mer=new TreeNode(root1.val+root2.val);
+        mer.left=mergeTrees(root1.left,root2.left);
+        mer.right=mergeTrees(root1.right,root2.right);
+        return mer;
+    }
+}
+```
+
 ## LC.623 在二叉树中增加一行
 > https://leetcode.cn/problems/add-one-row-to-tree/
 ```java
