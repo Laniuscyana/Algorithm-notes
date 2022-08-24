@@ -236,7 +236,7 @@ class Solution {
 ```
 
 ### LC.617 合并二叉树
-> https://leetcode.cn/problems/merge-two-binary-trees/submissions/
+> https://leetcode.cn/problems/merge-two-binary-trees/
 ```java
 class Solution {
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
@@ -256,7 +256,7 @@ class Solution {
 }
 ```
 
-## LC.623 在二叉树中增加一行
+### LC.623 在二叉树中增加一行
 > https://leetcode.cn/problems/add-one-row-to-tree/
 ```java
 class Solution {
@@ -280,6 +280,49 @@ class Solution {
     }
 }
 ```
+
+### LC.655 输出二叉树
+> https://leetcode.cn/problems/print-binary-tree/
+```java
+class Solution {
+    int h,m,n;
+    List<List<String>> ans;
+    public List<List<String>> printTree(TreeNode root) {
+        dfs1(root,0);
+        m=h+1;
+        n=(1<<(h+1))-1;
+        ans=new ArrayList<>();
+        for(int i=0;i<m;i++){
+            List<String> cur=new ArrayList<>();
+            for(int j=0;j<n;j++){
+                cur.add("");
+            }
+            ans.add(cur);
+        }
+        dfs2(root,0,(n-1)/2);
+        return ans;
+    }
+
+    public void dfs1(TreeNode root, int depth){
+        if(root==null){
+            return;
+        }
+        h=Math.max(h,depth);
+        dfs1(root.left,depth+1);
+        dfs1(root.right,depth+1);
+    }
+
+    public void dfs2(TreeNode root, int x, int y){
+        if(root==null){
+            return;
+        }
+        ans.get(x).set(y,String.valueOf(root.val));
+        dfs2(root.left, x+1, y-(1<<(h-x-1)));
+        dfs2(root.right, x+1, y+(1<<(h-x-1)));
+    }
+}
+```
+
 ### LC.814二叉树剪枝
 > https://leetcode.cn/problems/binary-tree-pruning/
 
