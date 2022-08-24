@@ -42,7 +42,8 @@ class Solution {
 }
 ```
 
-## 最小路径和
+## LC.64 最小路径和
+> https://leetcode.cn/problems/minimum-path-sum/
  ```java
 class Solution {
     public int minPathSum(int[][] grid) {
