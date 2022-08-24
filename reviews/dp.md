@@ -33,6 +33,21 @@ class Solution {
 }
 ```
 
+## LC.70 爬楼梯
+> https://leetcode.cn/problems/climbing-stairs/
+```java
+class Solution {
+    public int climbStairs(int n) {
+        int a = 0, b = 0, c = 1;
+        for (int i = 1; i <= n; ++i) {
+            a = b; 
+            b = c; 
+            c = a + b;
+        }
+        return c;
+    }
+}
+```
 
 ## LC.312 打气球
 > https://leetcode.cn/problems/burst-balloons/
