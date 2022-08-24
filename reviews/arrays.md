@@ -1,6 +1,7 @@
 # 数组
 
 ## LC.31下一个排列
+> https://leetcode.cn/problems/next-permutation/
  ```java
 class Solution {
     public void nextPermutation(int[] nums) {
