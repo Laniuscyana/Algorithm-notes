@@ -16,3 +16,8 @@ class Solution{
     }
 }
 ```
+
+## LC.20有效的括号
+> https://leetcode.cn/problems/valid-parentheses/
+```java
+```
