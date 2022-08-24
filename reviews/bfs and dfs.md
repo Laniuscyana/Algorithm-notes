@@ -76,6 +76,55 @@ class Solution {
 }
 ```
 
+### LC.241 为运算表达式设置优先级
+ ```java
+class Solution {
+    char[] s;
+    public List<Integer> diffWaysToCompute(String expression) {
+        s=expression.toCharArray();
+        return dfs(0,s.length-1);
+    }
+
+    List<Integer> dfs(int l, int r){
+        //生成一个链表
+        List<Integer> ans=new ArrayList<Integer>();
+        for(int i=l;i<=r;i++){
+            //确保找到运算符，如果是数字就停止该次循环寻找下一个字符，直到下一个字符是运算符为止
+            if(s[i]>='0' && s[i]<='9'){
+                continue;
+            }
+            //找到运算符后，用递归搜两边所有可能的组合，即该符号右边所有可能出现的加减乘结果以及左边所有可能出现的加减乘结果
+            List<Integer> l1=dfs(l,i-1);
+            List<Integer> l2=dfs(i+1,r);
+            //以上搜完后，最后算该符号位置的加减乘结果
+            for(int a:l1){
+                for(int b:l2){
+                    int cur=0;
+                    if(s[i]=='-'){
+                        cur=a-b;
+                    }else if(s[i]=='+'){
+                        cur=a+b;
+                    }else{
+                        cur=a*b;
+                    }
+                    ans.add(cur);
+                }
+            }
+        }
+        
+        //如果全部搜完都没有发现运算符，那么加入该数字，注意当没有运算符时，要把字符转化为十进制数加入
+        if(ans.isEmpty()){
+            int temp=0;
+            for(int i=l;i<=r;i++){
+                temp=temp*10+s[i]-'0';
+            }
+            ans.add(temp);
+        }
+        return ans;
+    }
+}
+```
+
 ### LC.814二叉树剪枝
 > https://leetcode.cn/problems/binary-tree-pruning/
 
@@ -166,54 +215,7 @@ class Solution {
 ```
 [广度优先搜索方法](#jump)
 
-### LC.241 为运算表达式设置优先级
- ```java
-class Solution {
-    char[] s;
-    public List<Integer> diffWaysToCompute(String expression) {
-        s=expression.toCharArray();
-        return dfs(0,s.length-1);
-    }
 
-    List<Integer> dfs(int l, int r){
-        //生成一个链表
-        List<Integer> ans=new ArrayList<Integer>();
-        for(int i=l;i<=r;i++){
-            //确保找到运算符，如果是数字就停止该次循环寻找下一个字符，直到下一个字符是运算符为止
-            if(s[i]>='0' && s[i]<='9'){
-                continue;
-            }
-            //找到运算符后，用递归搜两边所有可能的组合，即该符号右边所有可能出现的加减乘结果以及左边所有可能出现的加减乘结果
-            List<Integer> l1=dfs(l,i-1);
-            List<Integer> l2=dfs(i+1,r);
-            //以上搜完后，最后算该符号位置的加减乘结果
-            for(int a:l1){
-                for(int b:l2){
-                    int cur=0;
-                    if(s[i]=='-'){
-                        cur=a-b;
-                    }else if(s[i]=='+'){
-                        cur=a+b;
-                    }else{
-                        cur=a*b;
-                    }
-                    ans.add(cur);
-                }
-            }
-        }
-        
-        //如果全部搜完都没有发现运算符，那么加入该数字，注意当没有运算符时，要把字符转化为十进制数加入
-        if(ans.isEmpty()){
-            int temp=0;
-            for(int i=l;i<=r;i++){
-                temp=temp*10+s[i]-'0';
-            }
-            ans.add(temp);
-        }
-        return ans;
-    }
-}
-```
 
 ## LC.623 
 > https://leetcode.cn/problems/add-one-row-to-tree/
