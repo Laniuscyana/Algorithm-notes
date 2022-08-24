@@ -304,61 +304,6 @@ class Solution {
 
 那么是否有其他复杂度更低、且占用空间更小的解法？
 
-## LC.496 下一个更大元素I
-> https://leetcode.cn/problems/next-greater-element-i/
-
-求解子序列在母序列中的下一个最大元素，最朴素的想法是对子序列的每一个元素都求出它在母序列的位置，然后去寻找下一个更大元素。进一步地，可以考虑这样一个解法，既然子序列的每一个元素都在母序列中出现，为了节省时间，可以先找出母序列中每一个元素的更大元素，放入哈希表中，即（母序列元素，对应的下一个更大元素），然后对子序列的每一个元素，在哈希表中找到对应的value即可。
-
- ```java
-class Solution {
-    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-       Map<Integer,Integer> map=new HashMap<Integer,Integer>();
-       Deque<Integer> stack=new ArrayDeque<Integer>();
-       for(int i=nums2.length-1;i>=0;i--){
-           int num=nums2[i];
-           while(!stack.isEmpty() && num>=stack.peek()){
-               stack.pop();
-           }
-           map.put(num,stack.isEmpty()?-1:stack.peek());
-           stack.push(num);
-       }
-
-       int[] ans=new int[nums1.length];
-       for(int i=0;i<nums1.length;i++){
-           ans[i]=map.get(nums1[i]);
-       }
-       return ans;
-    }
-}
-```
-
-## LC.503 下一个更大元素II
-> https://leetcode.cn/problems/next-greater-element-ii/
-
-用单调栈来解决这道题，首先，由于这是一个循环数组，实际求解过程中需要将前n-1个元素衔接到原数组的最后一个元素后面；实际操作中可以不用生成而是实际循环2n-1词，但每次对i取模。
-
-先生成一个栈，然后将第一个元素的**下标**压入栈中；此时将第二个元素与栈顶编号对应的元素进行比较，如果栈顶的编号对应的数组元素小于第二个元素，说明第二个元素正是它的下一个最大元素。弹出栈顶元素，并用ans数组记录弹出的编号，正好对应第二个元素，此时原数组的第一个元素的下一个更大元素求解完成。然后，将第二个元素的下标压入栈中，重复刚才的过程。
-
-这里需要注意一点，在用代码表示**栈顶编号对应的元素如果小于即将入栈的元素，那么说明即将入栈的元素正是它的下一个更大元素，反之，如果栈顶编号对应的元素大于即将入栈的元素，说明即将入栈的元素不是它的下一个更大元素，此时对栈不做弹出操作，只将即将入栈的元素压入；当栈中有两个及以上的元素时，每一次都检查栈是否不空，以及栈顶元素对应的数组元素是否小于即将入栈的元素，如果两个条件都满足，那么就弹出栈顶元素，用ans数组记录，直到栈为空或者栈顶对应的数组元素大于即将入栈的元素**。
-
- ```java
-class Solution {
-    public int[] nextGreaterElements(int[] nums) {
-        int n=nums.length;
-        int[] ans=new int[n];
-        Arrays.fill(ans,-1);
-        Deque<Integer> stack=new ArrayDeque<Integer>();
-        for(int i=0;i<2*n-1;i++){
-            while(!stack.isEmpty() && nums[stack.peek()]<nums[i%n]){
-                ans[stack.pop()]=nums[i%n];
-           }
-           stack.push(i%n);
-        }
-        return ans;
-    }
-}
-```
-
 ### LC.565 数组嵌套
 
 解题思路：由于本题中原始数组各不相同且都在0,n-1之间，所以可以考虑直接模拟。
