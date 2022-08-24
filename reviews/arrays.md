@@ -38,7 +38,27 @@ class Solution {
 }
 ```
 
-## LC.45 跳跃游戏II
+## LC.55 跳跃游戏
+> https://leetcode.cn/problems/jump-game/
+
+```java
+class Solution {
+    public boolean canJump(int[] nums) {
+        //设定一个最远能够达到的距离的下标max，每次跳跃后维护它
+        int max=0;
+        //对每个下标，先判断上一个跳跃后，是否能达到现在的下标，如果可以，那么就计算在当前下标位置最远能达到的地方，如果不能达到，返回false
+        for(int i=0;i<nums.length;i++){
+            if(i>max){
+                return false;
+            }
+            max=Math.max(max,i+nums[i]);
+        }
+        return true;
+    }
+}
+```
+
+### 拓展：LC.45 跳跃游戏II
 > https://leetcode.cn/problems/jump-game-ii/
 ```java
 class Solution {
@@ -60,26 +80,6 @@ class Solution {
         }
         return res;
 
-    }
-}
-```
-
-## LC.55 跳跃游戏
-> https://leetcode.cn/problems/jump-game/
-
-```java
-class Solution {
-    public boolean canJump(int[] nums) {
-        //设定一个最远能够达到的距离的下标max，每次跳跃后维护它
-        int max=0;
-        //对每个下标，先判断上一个跳跃后，是否能达到现在的下标，如果可以，那么就计算在当前下标位置最远能达到的地方，如果不能达到，返回false
-        for(int i=0;i<nums.length;i++){
-            if(i>max){
-                return false;
-            }
-            max=Math.max(max,i+nums[i]);
-        }
-        return true;
     }
 }
 ```
