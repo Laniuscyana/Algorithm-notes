@@ -226,9 +226,36 @@ class Solution {
 }
 ```
 
+## LC.169 多数元素I 
+> https://leetcode.cn/problems/majority-element/
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        if(nums.length==0 || nums==null){
+            return -1;
+        }
 
+        int candidate=Integer.MAX_VALUE;
+        int count=0;
 
-## LC.229 多数元素II
+        for(int num:nums){
+            if(count==0){
+                candidate=num;
+            }
+            if(num!=candidate){
+                count--;
+            }else if(num==candidate){
+                count++;
+            }
+        }
+
+        return candidate;
+
+    }
+}
+```
+
+### 拓展：LC.229 多数元素II
 > https://leetcode.cn/problems/majority-element-ii/
 ```java
 class Solution {
