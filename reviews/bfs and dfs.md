@@ -57,6 +57,43 @@ class Solution {
 [深度优先搜索方法](#jump2)
 
 ## 深度优先搜索
+
+## LC.814二叉树剪枝
+> https://leetcode.cn/problems/binary-tree-pruning/
+
+ ```java
+ /**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution{
+    public TreeNode pruneTree(TreeNode root) {
+        if(root==null){
+            return root;
+        }
+        
+        root.left=pruneTree(root.left);
+        root.right=pruneTree(root.right);
+        
+        if(root.val==0 && root.left==null && root.right==null){
+            return null;
+        }
+        
+        return root;
+    }
+}
+```
 ### LC.515：求二叉树每一层的节点的最大值
 <span id="jump2"> </span>
  ``` java
