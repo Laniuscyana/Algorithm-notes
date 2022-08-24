@@ -304,7 +304,7 @@ class Solution {
     }
 }
 ```
-
+思考：可以推广到k个"候选人"的情况吗？
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
