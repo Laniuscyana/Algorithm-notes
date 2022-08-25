@@ -82,11 +82,46 @@ class Solution {
 ## LC.219 存在重复元素II
 > https://leetcode.cn/problems/contains-duplicate-ii/
 ```java
-
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                if(i-map.get(nums[i])<=k){
+                    return true;
+                }
+            }
+            map.put(nums[i],i);
+        }
+       return false;
+    }
+}
 ```
 
 ## LC.220 存在重复元素III
 > https://leetcode.cn/problems/contains-duplicate-iii/
 ```java
+class Solution {
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        if(k<1 || t<0){
+            return false;
+        }
+        HashMap<Long,Long> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            long remapnum=(long)nums[i]-Integer.MIN_VALUE;
+            long bucket=remapnum/((long)t+1);
+            if(map.containsKey(bucket) || (map.containsKey(bucket-1) && remapnum-map.get(bucket-1)<=t) || (map.containsKey(bucket+1) && map.get(bucket+1)-remapnum<=t) ){
+                return true;
+            }
 
+            if(map.entrySet().size()>=k){
+                long lastBucket=((long)nums[i-k]-Integer.MIN_VALUE)/((long)t+1);
+                map.remove(lastBucket);
+            }
+            map.put(bucket,remapnum);
+        }
+        return false;
+
+    }
+}
 ```
