@@ -324,6 +324,30 @@ class Solution {
 }
 ```
 
+## LC.238 除自身以外数组的乘积
+> https://leetcode.cn/problems/product-of-array-except-self/
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] ans=new int[nums.length];
+        int L=1;
+        
+        //这是左侧所有的乘积
+        ans[nums.length-1]=1;
+        for(int i=nums.length-2;i>=0;i--){
+            ans[i]=ans[i+1]*nums[i+1];
+        }
+
+        //这是乘上右侧的；
+        for(int i=0;i<nums.length;i++){
+            ans[i]=L*ans[i];
+            L *=nums[i];
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
