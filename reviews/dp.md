@@ -94,6 +94,42 @@ class Solution {
 }
 ```
 
+## LC.473 火柴拼正方形
+> https://leetcode.cn/problems/matchsticks-to-square/
+```java
+class Solution {
+    public boolean makesquare(int[] matchsticks) {
+      int n=matchsticks.length;
+      int sum=0;
+      for(int i=0;i<n;i++){
+         sum += matchsticks[i];
+      }
+      
+      if(sum%4!=0){
+         return false;
+      }
+      
+      int length=sum/4;
+      int[] dp=new int[1 << n];
+      Arrays.fill(dp,-1);
+      dp[0]=0;
+     for(int s=1;s<(1<<n);s++){
+        for(int k=0;k<n;k++){
+          if((s & (1<<k))==0){
+            continue;
+          }
+          int s1=s & ~(1<<k);
+          if(dp[s1]>=0 && dp[s1]+matchsticks[k]<=length){
+            dp[s]=(dp[s1]+matchsticks[k])%length;
+            break;
+          }
+        }
+     }
+     return dp[(1<<n)-1]==0;
+    }
+}
+```
+
 ## LC.730
 > https://leetcode.cn/problems/count-different-palindromic-subsequences/
 ```java
