@@ -429,6 +429,49 @@ class Solution {
 
 那么是否有其他复杂度更低、且占用空间更小的解法？
 
+## LC.442 数组中重复的数据
+> https://leetcode.cn/problems/find-all-duplicates-in-an-array/
+```java
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> ans=new ArrayList<Integer>();
+        for(int num:nums){
+            int x=Math.abs(num);
+            if(nums[x-1]>0){
+                nums[x-1]=-nums[x-1];
+            }else{
+                ans.add(x);
+            }
+        }
+        return ans;
+
+    }
+}
+```
+
+### 拓展：LC.448 找到所有数组中消失的数字
+> https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/
+```java
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            int x=Math.abs(nums[i])-1;
+            nums[x] =-nums[x];
+        }
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                ans.add(i+1);
+            }
+        }
+
+        return ans;
+
+    }
+}
+```
+
 ## LC.565 数组嵌套
 
 解题思路：由于本题中原始数组各不相同且都在0,n-1之间，所以可以考虑直接模拟。
