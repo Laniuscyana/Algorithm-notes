@@ -56,3 +56,60 @@ class Solution {
     }
 }
 ```
+
+## LC.535 TinyURL的解密与加密
+> https://leetcode.cn/problems/encode-and-decode-tinyurl/
+```java
+public class Codec {
+    private Map<Integer,String> dataBase=new HashMap<Integer,String>();
+    private Random random=new Random();
+
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        int x;
+        while(true){
+            x=random.nextInt();
+            if(!dataBase.containsKey(x)){
+                break;
+            }
+        }
+        dataBase.put(x,longUrl);
+        return "http://tinyurl.com/"+x;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        int p=shortUrl.lastIndexOf('/')+1;
+        int x=Integer.parseInt(shortUrl.substring(p));
+        return dataBase.get(x);
+    }
+}
+
+// public class Codec {
+//     private Map<Integer, String> dataBase = new HashMap<Integer, String>();
+//     private Random random = new Random();
+
+//     public String encode(String longUrl) {
+//         int key;
+//         while (true) {
+//             key = random.nextInt();
+//             if (!dataBase.containsKey(key)) {
+//                 break;
+//             }
+//         }
+//         dataBase.put(key, longUrl);
+//         return "http://tinyurl.com/" + key;
+//     }
+
+//     public String decode(String shortUrl) {
+//         int p = shortUrl.lastIndexOf('/') + 1;
+//         int key = Integer.parseInt(shortUrl.substring(p));
+//         return dataBase.get(key);
+//     }
+// }
+
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(url));
+```
