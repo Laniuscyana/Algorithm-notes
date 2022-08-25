@@ -156,6 +156,35 @@ class Solution {
 }
 ```
 
+### LC.513 找树左下角的值
+> https://leetcode.cn/problems/find-bottom-left-tree-value/
+```java
+class Solution {
+    int curheight=0;
+    int curval=0;
+
+    public int findBottomLeftValue(TreeNode root) {
+        dfs(root,0);
+        return curval;
+    }
+
+    public void dfs(TreeNode root,int height){
+        if(root==null){
+            return;
+        }
+
+        height++;
+        dfs(root.left,height);
+        dfs(root.right,height);
+        if(height>curheight){
+            curheight=height;
+            curval=root.val;
+        }
+    }
+}
+
+```
+
 
 ### LC.515：求二叉树每一层的节点的最大值
 > https://leetcode.cn/problems/find-largest-value-in-each-tree-row/
