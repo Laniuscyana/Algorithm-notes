@@ -376,6 +376,33 @@ class Solution {
 }
 ```
 
+## LC.299 猜数字游戏
+> https://leetcode.cn/problems/bulls-and-cows/
+```java
+class Solution {
+    public String getHint(String secret, String guess) {
+        int n=secret.length();
+        int[] cnt=new int[10];
+        int bulls=0;
+        int cows=0;
+
+        for(int i=0;i<n;i++){
+           if(secret.charAt(i)==guess.charAt(i)){
+               bulls++;
+           }else{
+               if(cnt[secret.charAt(i)-'0']++<0){
+                   cows++;
+               }
+               if(cnt[guess.charAt(i)-'0']-->0){
+                   cows++;
+               }
+           }
+        }
+        return new StringBuilder().append(bulls).append('A').append(cows).append('B').toString();
+    }
+}
+```
+
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
@@ -402,7 +429,7 @@ class Solution {
 
 那么是否有其他复杂度更低、且占用空间更小的解法？
 
-### LC.565 数组嵌套
+## LC.565 数组嵌套
 
 解题思路：由于本题中原始数组各不相同且都在0,n-1之间，所以可以考虑直接模拟。
 注意到题目的要求是当S数组中出现重复时停止添加元素，那么在该题中，为了防止出现重复元素，可以将访问过的元素重制为范围之外的任意数字，并设置为循环停止的条件。
