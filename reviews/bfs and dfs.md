@@ -46,6 +46,30 @@ class Solution{
     }
 }
 ```
+### LC.513 找树左下角的值
+> https://leetcode.cn/problems/find-bottom-left-tree-value/
+```java
+class Solution {
+    public int findBottomLeftValue(TreeNode root) {
+        int ret=0;
+        Queue<TreeNode> queue=new ArrayDeque<TreeNode>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode p=queue.poll();
+            if(p.right!=null){
+                queue.offer(p.right);
+            }
+            if(p.left!=null){
+                queue.offer(p.left);
+            }
+            ret=p.val;
+        }
+        return ret;
+
+    }
+}
+```
+
 ### LC.515：求二叉树每一层的节点的最大值
 > https://leetcode.cn/problems/find-largest-value-in-each-tree-row/
 <span id="jump"> </span>
