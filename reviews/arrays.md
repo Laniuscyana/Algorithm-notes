@@ -226,20 +226,6 @@ class Solution {
 }
 ```
 
-## LC.136 只出现一次的数字
-> https://leetcode.cn/problems/single-number/
-```java
-class Solution {
-    public int singleNumber(int[] nums) {
-        int s=0;
-        for(int num:nums){
-            s ^=num;
-        }
-        return s;
-    }
-}
-```
-
 ## LC.169 多数元素I 
 > https://leetcode.cn/problems/majority-element/
 ```java
@@ -319,6 +305,25 @@ class Solution {
 }
 ```
 思考：可以推广到k个"候选人"的情况吗？
+
+## LC.189 轮转数组
+> https://leetcode.cn/problems/rotate-array/
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n=nums.length;
+        int[] temp=new int[n];
+        for(int i=0;i<n;i++){
+            temp[(i+k)%n]=nums[i];
+        }
+
+        for(int i=0;i<n;i++){
+            nums[i]=temp[i];
+        }
+    }
+}
+```
+
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
