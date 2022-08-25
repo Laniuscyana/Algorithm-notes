@@ -226,6 +226,20 @@ class Solution {
 }
 ```
 
+## LC.136 只出现一次的数字
+> https://leetcode.cn/problems/single-number/
+```java
+class Solution {
+    public int singleNumber(int[] nums) {
+        int s=0;
+        for(int num:nums){
+            s ^=num;
+        }
+        return s;
+    }
+}
+```
+
 ## LC.169 多数元素I 
 > https://leetcode.cn/problems/majority-element/
 ```java
