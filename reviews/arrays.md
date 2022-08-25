@@ -348,6 +348,34 @@ class Solution {
 }
 ```
 
+## LC.242 有效的字母异位词
+> https://leetcode.cn/problems/valid-anagram/
+```java
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[] sw=s.toCharArray();
+        char[] tw=t.toCharArray();
+        int[] s1=new int[26];
+        int[] t1=new int[26];
+        for(char c:sw){
+            s1[(int)c-'a']++;
+        }
+        for(char c:tw){
+            t1[(int)c-'a']++;
+        }
+
+        for(int i=0;i<26;i++){
+            if(s1[i]!=t1[i]){
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+}
+```
+
 ## LC.324 摆动排序II
 > https://leetcode.cn/problems/wiggle-sort-ii/
 
