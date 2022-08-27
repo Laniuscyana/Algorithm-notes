@@ -60,8 +60,8 @@ class Solution {
                     String word=s.substring(start+(m-1)*n,start+m*n);
                     differ.put(word,differ.getOrDefault(word,0)+1);
                     //为什么这里需要判断一下word是否等于0？因为前面的滑动窗口可能遗留了东西下来，如果滑动到这里匹配上了，就需要把这个word删掉；
-                    if (differ.get(word) == 0) {
-                    differ.remove(word);
+                    if(differ.get(word) == 0) {
+                        differ.remove(word);
                     }
                     
                     //此处将左边的单词移出滑动窗口
