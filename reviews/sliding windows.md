@@ -56,13 +56,15 @@ class Solution {
             //第二个及以后的滑动窗口生成，注意判断条件start不等于i才进行滑动窗口的滑动；并且判断第一个窗口是否符合要求；
             for(int start=i;start<ls-m*n+1;start +=n){
                 if(start!=i){
+                    //此处将右边的单词移入滑动窗口
                     String word=s.substring(start+(m-1)*n,start+m*n);
                     differ.put(word,differ.getOrDefault(word,0)+1);
                     //为什么这里需要判断一下word是否等于0？因为前面的滑动窗口可能遗留了东西下来，如果滑动到这里匹配上了，就需要把这个word删掉；
                     if (differ.get(word) == 0) {
                     differ.remove(word);
                     }
- 
+                    
+                    //此处将左边的单词移出滑动窗口
                     word=s.substring(start-n,start);
                     differ.put(word,differ.getOrDefault(word,0)-1);
                     if (differ.get(word) == 0) {
