@@ -4,6 +4,54 @@
 > https://leetcode.cn/problems/course-schedule/
 ```java
 class Solution {
+    List<List<Integer>> edge;
+    int[] visited;
+    boolean valid = true;
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        edge = new ArrayList<>();
+        for(int i = 0; i < numCourses; i++) {
+            edge.add(new ArrayList<Integer>());
+        }
+
+        visited = new int[numCourses];
+    
+        for(int[] info : prerequisites) {
+            edge.get(info[1]).add(info[0]);
+        }
+
+        for(int i = 0; i < numCourses && valid; i++) {
+            if(visited[i] ==0 ) {
+                dfs(i);
+            }
+        }
+
+        return valid;
+    }
+
+    public void dfs(int u) {
+        visited[u] = 1;
+
+        for(int v : edge.get(u)) {
+            if(visited[v] == 0) {
+                dfs(v);
+                if(!valid) {
+                    return;
+                }
+            }else if(visited[v] == 1) {
+                valid = false;
+                return;
+            }
+        }
+
+        visited[u] = 2;
+    }
+}
+```
+## LC.210 课程表II
+> https://leetcode.cn/problems/course-schedule-ii/
+```java
+class Solution {
     //用于储存有向图
     List<List<Integer>> edges;
     //用于标记有向图节点的搜索情况，0为未搜索，1为搜索中，2为已经搜索
@@ -71,9 +119,4 @@ class Solution {
         results[index--] = u;
     }
 }
-```
-## LC.210 课程表II
-> https://leetcode.cn/problems/course-schedule-ii/
-```java
-
 ```
