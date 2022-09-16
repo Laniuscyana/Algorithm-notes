@@ -23,6 +23,31 @@ class Solution {
 }
 ```
 
+### 拓展：微软面试题
+题目描述：给定字符串s，其中都是英文小写字母。如果s中的子串含有的每种字符都是偶数个，那么这样的子串就是达标子串，子串要求是连续串，返回s中达标子串的最大长度。
+条件：1 <= s.length() <= 10^5.
+
+```java
+class Solution {
+    public int maxlengthofyessubstring(String s) {
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int n = s.length();
+        int status = 0;
+        int ans = 0;
+        for(int i = 0; i < n; i++) {
+            status ^= 1 << (s.charAt(i) - 'a');
+            if(map.containsKey(status)) {
+                ans = Math.max(ans, i - map.get(status));
+            }else {
+                map.put(status,i);
+            }
+        }
+        return ans;
+    }
+}
+```
+
 ## LC.30 串联所有单词的子串
 > https://leetcode.cn/problems/substring-with-concatenation-of-all-words/
  ```java
