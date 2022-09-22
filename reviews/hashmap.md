@@ -113,3 +113,32 @@ public class Codec {
 // Codec codec = new Codec();
 // codec.decode(codec.encode(url));
 ```
+## LC.1640 能否连接成数组
+> https://leetcode.cn/problems/check-array-formation-through-concatenation/
+```java
+class Solution {
+    public boolean canFormArray(int[] arr, int[][] pieces) {
+        int n = arr.length;
+        int m = pieces.length;
+        int[] hash = new int[110];
+        for(int i = 0; i < m; i++) {
+            hash[pieces[i][0]] = i;
+        }
+        for(int i = 0; i < n;) {
+            int[] cur = pieces[hash[arr[i]]];
+            int len = cur.length;
+            int idx = 0;
+            while(idx < len && cur[idx] == arr[i+idx]) {
+                idx++;
+            }
+            if(idx == len) {
+                i += len;
+            }else {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+```
