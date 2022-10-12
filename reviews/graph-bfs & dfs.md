@@ -133,7 +133,7 @@ class Solution {
 }
 ```
 
-## LC.329 
+## LC.329 矩阵中最长递增路径
 > https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/
 ```java
 class Solution {
