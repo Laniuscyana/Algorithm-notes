@@ -10,13 +10,13 @@ class Solution {
         int ans=0;
         Map<Character,Integer> map=new HashMap<Character,Integer>();
 
-        for(int end=0;end<n;end++){
-            char ws=s.charAt(end);
-            if(map.containsKey(ws)){
-                start=Math.max(start,map.get(ws));
+        for (int end = 0;end < n;end++) {
+            char ws = s.charAt(end);
+            if (map.containsKey(ws)) {
+                start = Math.max(start, map.get(ws));
             }
-            ans=Math.max(ans, end-start+1);
-            map.put(ws,end+1);
+            ans = Math.max(ans, end-start+1);
+            map.put(ws, end+1);
         }
         return ans;
     }
