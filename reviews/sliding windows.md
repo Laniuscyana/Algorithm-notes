@@ -5,12 +5,12 @@
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int n=s.length();
-        int start=0;
-        int ans=0;
-        Map<Character,Integer> map=new HashMap<Character,Integer>();
+        int n = s.length();
+        int start = 0;
+        int ans = 0;
+        Map<Character,Integer> map = new HashMap<Character, Integer>();
 
-        for (int end = 0;end < n;end++) {
+        for (int end = 0; end < n; end++) {
             char ws = s.charAt(end);
             if (map.containsKey(ws)) {
                 start = Math.max(start, map.get(ws));
