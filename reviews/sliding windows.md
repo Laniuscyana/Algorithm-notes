@@ -1,4 +1,21 @@
 # 滑动窗口
+模板
+```java
+class Solution {
+    public int slidingwindows(String s) {
+        int max_len = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        int start = 0;
+        for (int end = 0; end < s.length; end++) {
+            if (end - start + 1 == map.size()) {
+               //更新
+            }
+        }
+        
+    }
+}
+```
 
 ## LC.3 无重复字符的最长子串
 > https://leetcode.cn/problems/longest-substring-without-repeating-characters/
